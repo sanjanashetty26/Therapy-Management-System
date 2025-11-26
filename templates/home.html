@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Welcome to Therapy Management System</h2>
+
+<div class="row">
+
+    <div class="col-md-4 mb-3">
+        <a href="/patients" class="btn btn-primary w-100 p-3">Manage Patients</a>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <a href="/clinicians" class="btn btn-primary w-100 p-3">Manage Clinicians</a>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <a href="/sessions" class="btn btn-primary w-100 p-3">Manage Sessions</a>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <a href="/assessments" class="btn btn-primary w-100 p-3">Assessments</a>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <a href="/logs" class="btn btn-primary w-100 p-3">Activity Logs</a>
+    </div>
+
+</div>
+
+{% endblock %}

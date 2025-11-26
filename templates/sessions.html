@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Manage Sessions</h2>
+
+<div class="card p-4 mb-4">
+
+    <h4>Add New Session</h4>
+
+    <form method="POST" action="/sessions">
+
+        <div class="row mb-3">
+
+            <!-- Patient -->
+            <div class="col-md-4">
+                <label>Patient</label>
+                <select name="patient_id" class="form-control" required>
+                    <option value="">Select</option>
+                    {% for p in patients %}
+                        <option value="{{ p.id }}">{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Clinician -->
+            <div class="col-md-4">
+                <label>Clinician</label>
+                <select name="clinician_id" class="form-control" required>
+                    <option value="">Select</option>
+                    {% for c in clinicians %}
+                        <option value="{{ c.id }}">{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-4">
+                <label>Date</label>
+                <input type="date" name="session_date" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="mb-3">
+            <label>Notes</label>
+            <textarea name="notes" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button class="btn btn-primary">Add Session</button>
+
+    </form>
+
+</div>
+
+
+<h3>All Sessions</h3>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Clinician</th>
+            <th>Date</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for s in sessions %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.patient_name }}</td>
+            <td>{{ s.clinician_name }}</td>
+            <td>{{ s.session_date }}</td>
+            <td>{{ s.notes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

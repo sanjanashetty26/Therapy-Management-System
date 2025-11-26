@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Add Clinician</h2>
+
+<div class="card p-4 shadow-sm">
+
+    <form method="POST" action="/clinicians/add">
+
+        <div class="mb-3">
+            <label class="form-label">Clinician Name</label>
+            <input class="form-control" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Specialization</label>
+            <input class="form-control" name="specialization" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input class="form-control" name="phone" required>
+        </div>
+
+        <button class="btn btn-primary">Add Clinician</button>
+        <a href="/clinicians" class="btn btn-secondary">Cancel</a>
+
+    </form>
+
+</div>
+
+{% endblock %}

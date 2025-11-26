@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 class="mb-4">Add Log</h2>
+
+<form method="POST" action="/logs/add">
+
+    <div class="mb-3">
+        <label>Session</label>
+        <select name="session_id" class="form-control">
+            {% for s in sessions %}
+            <option value="{{ s['id'] }}">Session {{ s['id'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Log Type</label>
+        <input type="text" name="log_type" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Log Date</label>
+        <input type="datetime-local" name="log_date" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Log</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Patients</h2>
+
+<!-- Add Patient Form -->
+<div class="card p-3 mb-4">
+    <h5>Add New Patient</h5>
+
+    <form method="POST" action="/patients/add" class="row g-3">
+        <div class="col-md-6">
+            <input class="form-control" name="name" placeholder="Name" required>
+        </div>
+
+        <div class="col-md-6">
+            <input class="form-control" name="gender" placeholder="Gender" required>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" name="dob" placeholder="DOB" required>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" name="address" placeholder="Address" required>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" name="phone" placeholder="Phone" required>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary">Add Patient</button>
+        </div>
+    </form>
+</div>
+
+<!-- Patients List Table -->
+<h4>All Patients</h4>
+
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in patients %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.gender }}</td>
+            <td>{{ p.dob }}</td>
+            <td>{{ p.phone }}</td>
+
+            <td>
+                <a href="/edit_patient/{{ p.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/delete_patient/{{ p.id }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

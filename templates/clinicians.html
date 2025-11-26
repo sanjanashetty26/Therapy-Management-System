@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Clinicians</h2>
+
+<div class="card p-4 mb-4 shadow-sm">
+    <h4>Add New Clinician</h4>
+
+    <form method="POST" class="row g-3">
+        <div class="col-md-4">
+            <input class="form-control" name="name" placeholder="Clinician Name" required>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" name="specialization" placeholder="Specialization" required>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" name="phone" placeholder="Phone" required>
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-primary">Add Clinician</button>
+        </div>
+    </form>
+</div>
+
+<h4>All Clinicians</h4>
+
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in clinicians %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.specialization }}</td>
+            <td>{{ c.phone }}</td>
+
+            <td>
+                <a href="/clinicians/edit/{{ c.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/clinicians/delete/{{ c.id }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete this clinician?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

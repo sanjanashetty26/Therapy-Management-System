@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Assessments</h2>
+
+<div class="card p-4 mb-4">
+    <h3>Add New Assessment</h3>
+
+    <form method="POST" action="/assessments">
+        
+        <div class="row mb-3">
+            <!-- Session Dropdown -->
+            <div class="col-md-4">
+                <label>Session</label>
+                <select name="session_id" class="form-control" required>
+                    <option value="">Select Session</option>
+                    {% for s in sessions %}
+                        <option value="{{ s.id }}">
+                            Session {{ s.id }} - {{ s.patient_name }} with {{ s.clinician_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Assessment Type -->
+            <div class="col-md-4">
+                <label>Assessment Type</label>
+                <input type="text" class="form-control" name="assessment_type" required>
+            </div>
+
+            <!-- Score -->
+            <div class="col-md-4">
+                <label>Score</label>
+                <input type="text" class="form-control" name="score" required>
+            </div>
+        </div>
+
+        <!-- Remarks -->
+        <div class="mb-3">
+            <label>Remarks</label>
+            <textarea name="remarks" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button class="btn btn-primary">Add Assessment</button>
+    </form>
+</div>
+
+<h3>All Assessments</h3>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Session</th>
+            <th>Patient</th>
+            <th>Clinician</th>
+            <th>Type</th>
+            <th>Score</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for a in assessments %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.session_display }}</td>
+            <td>{{ a.patient_name }}</td>
+            <td>{{ a.clinician_name }}</td>
+            <td>{{ a.assessment_type }}</td>
+            <td>{{ a.score }}</td>
+            <td>{{ a.remarks }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

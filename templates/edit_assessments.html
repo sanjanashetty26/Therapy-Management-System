@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Assessment</h2>
+
+<div class="card p-4">
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Assessment Type</label>
+            <input type="text" name="assessment_type" class="form-control"
+                   value="{{ assessment.assessment_type }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Score</label>
+            <input type="text" name="score" class="form-control" value="{{ assessment.score }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Remarks</label>
+            <textarea name="remarks" class="form-control">{{ assessment.remarks }}</textarea>
+        </div>
+
+        <button class="btn btn-primary">Update</button>
+
+    </form>
+</div>
+
+{% endblock %}
